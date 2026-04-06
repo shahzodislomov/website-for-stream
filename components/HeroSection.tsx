@@ -29,11 +29,12 @@ const particleData = [
 
 export default function HeroSection() {
   const particles = useMemo(() => particleData, []);
+  const quickTransition = { duration: 0.35, ease: "easeOut" as const };
 
   return (
-    <section className="relative overflow-hidden bg-[#0a0a0f]">
+    <section className="relative isolate overflow-hidden bg-[#0a0a0f]">
       {/* Animated background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none">
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,107,53,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,107,53,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
         
@@ -81,15 +82,15 @@ export default function HeroSection() {
         {/* Text content */}
         <motion.div
           className="flex-1 text-center lg:text-left"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={quickTransition}
         >
           {/* Live indicator */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 1, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
+            transition={{ ...quickTransition, delay: 0.05 }}
             className="inline-flex items-center gap-3 bg-[#12121a] border border-white/10 text-white text-sm font-medium px-5 py-2.5 rounded-full mb-6"
           >
             <motion.span
@@ -106,9 +107,9 @@ export default function HeroSection() {
 
           <motion.h1
             className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ ...quickTransition, delay: 0.08 }}
           >
             Your Stream,
             <br />
@@ -119,9 +120,9 @@ export default function HeroSection() {
 
           <motion.p
             className="text-white/60 text-lg md:text-xl mb-8 max-w-xl mx-auto lg:mx-0"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ ...quickTransition, delay: 0.12 }}
           >
             Discover millions of live streams across gaming, music, art, and more. 
             Join a thriving community of creators and viewers.
@@ -129,9 +130,9 @@ export default function HeroSection() {
 
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ ...quickTransition, delay: 0.16 }}
           >
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
               <Link
@@ -160,9 +161,9 @@ export default function HeroSection() {
           {/* Stats */}
           <motion.div
             className="flex gap-8 mt-12 justify-center lg:justify-start"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.7 }}
+            transition={{ ...quickTransition, delay: 0.2 }}
           >
             {[
               { value: "50K+", label: "Live Streamers", color: "#ff6b35" },
@@ -171,9 +172,9 @@ export default function HeroSection() {
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + i * 0.1 }}
+                transition={{ ...quickTransition, delay: 0.22 + i * 0.04 }}
                 className="text-center lg:text-left"
               >
                 <p className="text-3xl font-black" style={{ color: stat.color }}>{stat.value}</p>
@@ -186,9 +187,9 @@ export default function HeroSection() {
         {/* Animated stream preview cards */}
         <motion.div
           className="flex-1 relative w-full max-w-xl"
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 1, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          transition={{ duration: 0.45, delay: 0.1, ease: "easeOut" }}
         >
           <div className="relative">
             {/* Main card */}
@@ -278,9 +279,9 @@ export default function HeroSection() {
       {/* Banner carousel */}
       <motion.div
         className="relative bg-gradient-to-r from-[#ff6b35]/10 via-[#12121a] to-[#00d4aa]/10 border-y border-white/5 overflow-hidden"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.9 }}
+        transition={{ ...quickTransition, delay: 0.12 }}
       >
         <motion.div
           className="flex items-center gap-8 py-4 whitespace-nowrap"

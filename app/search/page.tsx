@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import StreamCard from "@/components/StreamCard";
 import { motion } from "framer-motion";
@@ -55,6 +55,7 @@ function useSearchResults(query: string) {
 }
 
 function SearchContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const [searchInput, setSearchInput] = useState(query);
@@ -63,7 +64,7 @@ function SearchContent() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchInput.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchInput)}`;
+      router.push(`/search?q=${encodeURIComponent(searchInput)}`);
     }
   };
 
