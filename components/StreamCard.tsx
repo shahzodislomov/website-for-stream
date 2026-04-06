@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Eye } from "lucide-react";
 
 export interface Stream {
   id: string;
@@ -68,7 +69,10 @@ export default function StreamCard({ stream }: { stream: Stream }) {
             className="absolute bottom-3 left-3 bg-black/70 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full"
             whileHover={{ scale: 1.05 }}
           >
-            👁 {formatViewers(stream.viewers)}
+            <span className="inline-flex items-center gap-1.5">
+              <Eye className="w-3.5 h-3.5" />
+              <span>{formatViewers(stream.viewers)}</span>
+            </span>
           </motion.div>
 
           {/* Category tag */}

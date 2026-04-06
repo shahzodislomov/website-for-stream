@@ -12,14 +12,14 @@ const allStreams = [
 ];
 
 const allCategories = [
-  { id: "fortnite", name: "Fortnite", viewers: 312000, icon: "🎯" },
-  { id: "league-of-legends", name: "League of Legends", viewers: 289000, icon: "⚔️" },
-  { id: "minecraft", name: "Minecraft", viewers: 198000, icon: "⛏️" },
-  { id: "valorant", name: "VALORANT", viewers: 176000, icon: "🔫" },
-  { id: "gta", name: "GTA V", viewers: 154000, icon: "🚗" },
-  { id: "music", name: "Music", viewers: 98000, icon: "🎵" },
-  { id: "just-chatting", name: "Just Chatting", viewers: 445000, icon: "💬" },
-  { id: "irl", name: "IRL", viewers: 87000, icon: "📱" },
+  { id: "fortnite", name: "Fortnite", viewers: 312000, icon: "target" },
+  { id: "league-of-legends", name: "League of Legends", viewers: 289000, icon: "sword" },
+  { id: "minecraft", name: "Minecraft", viewers: 198000, icon: "pickaxe" },
+  { id: "valorant", name: "VALORANT", viewers: 176000, icon: "crosshair" },
+  { id: "gta", name: "GTA V", viewers: 154000, icon: "car" },
+  { id: "music", name: "Music", viewers: 98000, icon: "music" },
+  { id: "just-chatting", name: "Just Chatting", viewers: 445000, icon: "messages" },
+  { id: "irl", name: "IRL", viewers: 87000, icon: "smartphone" },
 ];
 
 const streamers = [

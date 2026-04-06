@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { getCategoryIcon, type CategoryIconName } from "@/components/home/icon-map";
 
 export interface Category {
   id: string;
   name: string;
   viewers: number;
   color: string;
-  icon: string;
+  icon: CategoryIconName;
 }
 
 function formatViewers(n: number): string {
@@ -17,6 +18,8 @@ function formatViewers(n: number): string {
 }
 
 export default function CategoryCard({ category }: { category: Category }) {
+  const Icon = getCategoryIcon(category.icon);
+
   return (
     <Link href={`/category/${category.id}`} className="group block">
       <motion.div
@@ -39,12 +42,12 @@ export default function CategoryCard({ category }: { category: Category }) {
           />
 
           {/* Icon */}
-          <div className="absolute inset-0 flex items-center justify-center text-5xl">
+          <div className="absolute inset-0 flex items-center justify-center">
             <motion.span
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              {category.icon}
+              <Icon className="w-12 h-12 text-white" strokeWidth={1.8} />
             </motion.span>
           </div>
 

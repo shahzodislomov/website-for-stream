@@ -3,8 +3,10 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
+import { getCategoryIconById, headingIcons } from "@/components/home/icon-map";
 import StreamCard from "@/components/StreamCard";
 import { motion } from "framer-motion";
+import { Search } from "lucide-react";
 
 interface SearchResult {
   streams: Array<{
@@ -55,6 +57,10 @@ function useSearchResults(query: string) {
 }
 
 function SearchContent() {
+  const StreamsIcon = headingIcons.streams;
+  const CategoriesIcon = headingIcons.categories;
+  const CreatorsIcon = headingIcons.creators;
+  const SearchIcon = headingIcons.search;
   const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
@@ -92,9 +98,7 @@ function SearchContent() {
               placeholder="Search streams, categories, creators..."
               className="w-full bg-[#12121a] text-white placeholder-white/30 rounded-xl pl-12 pr-4 py-4 border border-white/10 focus:border-[#ff6b35] focus:bg-[#1a1a25] transition-all text-lg"
             />
-            <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
             <button
               type="submit"
               className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-[#ff6b35] text-white font-semibold rounded-lg hover:bg-[#e55a2b] transition-colors"
@@ -135,7 +139,9 @@ function SearchContent() {
             {results.streams && results.streams.length > 0 && (
               <section className="mb-10">
                 <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  🔴 Streams <span className="text-white/40 text-sm font-normal">({results.streams.length})</span>
+                  <StreamsIcon className="w-5 h-5 text-[#ff3366]" />
+                  <span>Streams</span>
+                  <span className="text-white/40 text-sm font-normal">({results.streams.length})</span>
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                   {results.streams.map((stream, i) => (
@@ -155,24 +161,32 @@ function SearchContent() {
             {results.categories && results.categories.length > 0 && (
               <section className="mb-10">
                 <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  🎮 Categories <span className="text-white/40 text-sm font-normal">({results.categories.length})</span>
+                  <CategoriesIcon className="w-5 h-5 text-[#00d4aa]" />
+                  <span>Categories</span>
+                  <span className="text-white/40 text-sm font-normal">({results.categories.length})</span>
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
-                  {results.categories.map((cat, i) => (
-                    <motion.a
-                      key={cat.id}
-                      href={`/category/${cat.id}`}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.05 }}
-                      whileHover={{ scale: 1.05 }}
-                      className="bg-[#12121a] border border-white/5 rounded-xl p-4 text-center hover:border-[#ff6b35]/30 transition-all"
-                    >
-                      <div className="text-4xl mb-2">{cat.icon}</div>
-                      <p className="text-white font-medium text-sm">{cat.name}</p>
-                      <p className="text-white/40 text-xs mt-1">{(cat.viewers / 1000).toFixed(0)}K viewers</p>
-                    </motion.a>
-                  ))}
+                  {results.categories.map((cat, i) => {
+                    const Icon = getCategoryIconById(cat.id);
+
+                    return (
+                      <motion.a
+                        key={cat.id}
+                        href={`/category/${cat.id}`}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.05 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="bg-[#12121a] border border-white/5 rounded-xl p-4 text-center hover:border-[#ff6b35]/30 transition-all"
+                      >
+                        <div className="mb-2 flex justify-center">
+                          <Icon className="w-10 h-10 text-white" strokeWidth={1.8} />
+                        </div>
+                        <p className="text-white font-medium text-sm">{cat.name}</p>
+                        <p className="text-white/40 text-xs mt-1">{(cat.viewers / 1000).toFixed(0)}K viewers</p>
+                      </motion.a>
+                    );
+                  })}
                 </div>
               </section>
             )}
@@ -180,7 +194,9 @@ function SearchContent() {
             {results.streamers && results.streamers.length > 0 && (
               <section className="mb-10">
                 <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                  👤 Creators <span className="text-white/40 text-sm font-normal">({results.streamers.length})</span>
+                  <CreatorsIcon className="w-5 h-5 text-[#ff9f6b]" />
+                  <span>Creators</span>
+                  <span className="text-white/40 text-sm font-normal">({results.streamers.length})</span>
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   {results.streamers.map((streamer, i) => (
@@ -219,7 +235,9 @@ function SearchContent() {
           </motion.div>
         ) : (
           <div className="text-center py-20">
-            <div className="text-6xl mb-4">🔍</div>
+            <div className="flex justify-center mb-4">
+              <SearchIcon className="w-14 h-14 text-white/30" strokeWidth={1.5} />
+            </div>
             <p className="text-white/50 text-lg">Search for streams, categories, or creators</p>
           </div>
         )}

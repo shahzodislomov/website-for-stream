@@ -2,6 +2,16 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import {
+  Gamepad2,
+  Gift,
+  Medal,
+  MessageCircle,
+  Music4,
+  Palette,
+  Sparkles,
+  Video,
+} from "lucide-react";
 import { useMemo } from "react";
 
 const particleData = [
@@ -25,6 +35,17 @@ const particleData = [
   { x: "30%", y: "95%", duration: 7, delay: 3.5 },
   { x: "50%", y: "5%", duration: 9, delay: 1 },
   { x: "78%", y: "65%", duration: 8, delay: 4 },
+];
+
+const bannerItems = [
+  { label: "Esports Tournament - $100K Prize", Icon: Gamepad2 },
+  { label: "Live Music Festival Tonight", Icon: Music4 },
+  { label: "Art Challenge - Create & Win", Icon: Palette },
+  { label: "Pro Gaming League Finals", Icon: Medal },
+  { label: "Community Talks - Join the Chat", Icon: MessageCircle },
+  { label: "Drops Enabled - Watch & Earn", Icon: Gift },
+  { label: "Hot Streams - Don't Miss Out", Icon: Video },
+  { label: "New Features - Go Live Today", Icon: Sparkles },
 ];
 
 export default function HeroSection() {
@@ -262,8 +283,12 @@ export default function HeroSection() {
                 transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
               >
                 <div className={`aspect-video ${i === 1 ? 'bg-gradient-to-br from-[#00d4aa]/30 to-[#12121a]' : 'bg-gradient-to-br from-[#ff6b35]/30 to-[#12121a]'}`}>
-                  <div className="w-full h-full flex items-center justify-center text-3xl">
-                    {i === 1 ? "🎵" : "🎮"}
+                  <div className="w-full h-full flex items-center justify-center">
+                    {i === 1 ? (
+                      <Music4 className="w-10 h-10 text-white" strokeWidth={1.8} />
+                    ) : (
+                      <Gamepad2 className="w-10 h-10 text-white" strokeWidth={1.8} />
+                    )}
                   </div>
                 </div>
                 <div className="bg-[#12121a] px-2 py-1.5 flex items-center gap-1">
@@ -288,33 +313,16 @@ export default function HeroSection() {
           animate={{ x: [0, "-50%"] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         >
-          {[
-            "🎮 Esports Tournament - $100K Prize",
-            "🎵 Live Music Festival Tonight",
-            "🎨 Art Challenge - Create & Win",
-            "🏆 Pro Gaming League Finals",
-            "💬 Community Talks - Join the Chat",
-            "🎁 Drops Enabled - Watch & Earn",
-            "🔥 Hot Streams - Don't Miss Out",
-            "✨ New Features - Go Live Today",
-          ].map((text, i) => (
-            <span key={i} className="text-white/60 text-sm font-medium">
-              {text}
+          {bannerItems.map(({ label, Icon }, i) => (
+            <span key={i} className="text-white/60 text-sm font-medium inline-flex items-center gap-2">
+              <Icon className="w-4 h-4" strokeWidth={1.8} />
+              {label}
             </span>
           ))}
-          {/* Duplicate for seamless loop */}
-          {[
-            "🎮 Esports Tournament - $100K Prize",
-            "🎵 Live Music Festival Tonight",
-            "🎨 Art Challenge - Create & Win",
-            "🏆 Pro Gaming League Finals",
-            "💬 Community Talks - Join the Chat",
-            "🎁 Drops Enabled - Watch & Earn",
-            "🔥 Hot Streams - Don't Miss Out",
-            "✨ New Features - Go Live Today",
-          ].map((text, i) => (
-            <span key={`dup-${i}`} className="text-white/60 text-sm font-medium">
-              {text}
+          {bannerItems.map(({ label, Icon }, i) => (
+            <span key={`dup-${i}`} className="text-white/60 text-sm font-medium inline-flex items-center gap-2">
+              <Icon className="w-4 h-4" strokeWidth={1.8} />
+              {label}
             </span>
           ))}
         </motion.div>

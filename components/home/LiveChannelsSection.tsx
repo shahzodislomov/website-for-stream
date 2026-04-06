@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { headingIcons } from "@/components/home/icon-map";
 import StreamCard from "@/components/StreamCard";
 import { featuredStreams } from "@/components/home/home-data";
 
@@ -10,6 +11,8 @@ const filters = ["all", "gaming", "music", "art", "sports", "IRL"];
 
 export default function LiveChannelsSection() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const FlameIcon = headingIcons.liveChannels;
+  const SparklesIcon = headingIcons.all;
 
   const filteredStreams = useMemo(() => {
     if (activeFilter === "all") {
@@ -31,7 +34,10 @@ export default function LiveChannelsSection() {
         className="flex flex-col gap-4 mb-6 md:flex-row md:items-center md:justify-between"
       >
         <div>
-          <h2 className="text-white text-2xl md:text-3xl font-bold">🔥 Live Channels</h2>
+          <h2 className="text-white text-2xl md:text-3xl font-bold flex items-center gap-3">
+            <FlameIcon className="w-7 h-7 text-[#ff6b35]" />
+            <span>Live Channels</span>
+          </h2>
           <p className="text-white/40 text-sm mt-1">Handpicked streams for you right now</p>
         </div>
         <Link
@@ -63,7 +69,14 @@ export default function LiveChannelsSection() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {filter === "all" ? "✨ All" : filter.charAt(0).toUpperCase() + filter.slice(1)}
+            {filter === "all" ? (
+              <span className="inline-flex items-center gap-2">
+                <SparklesIcon className="w-4 h-4" />
+                <span>All</span>
+              </span>
+            ) : (
+              filter.charAt(0).toUpperCase() + filter.slice(1)
+            )}
           </motion.button>
         ))}
       </motion.div>

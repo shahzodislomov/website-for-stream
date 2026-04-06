@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { headingIcons } from "@/components/home/icon-map";
 import { formatCompactViewers, trendingStreamers } from "@/components/home/home-data";
 
 export default function CommunitySection() {
+  const TrendingIcon = headingIcons.trending;
+
   return (
     <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
       <motion.div
@@ -13,8 +16,9 @@ export default function CommunitySection() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-white text-2xl font-bold mb-6 flex items-center gap-2">
-          <span className="text-2xl">📈</span> Trending Now
+        <h2 className="text-white text-2xl font-bold mb-6 flex items-center gap-3">
+          <TrendingIcon className="w-7 h-7 text-[#ff9f6b]" />
+          <span>Trending Now</span>
         </h2>
         <div className="flex flex-col gap-3">
           {trendingStreamers.map((streamer, index) => (

@@ -1,3 +1,4 @@
+import type { CategoryIconName, FeatureIconName } from "@/components/home/icon-map";
 import type { Category } from "@/components/CategoryCard";
 import type { Stream } from "@/components/StreamCard";
 
@@ -85,14 +86,14 @@ export const featuredStreams: Stream[] = [
 ];
 
 export const categories: Category[] = [
-  { id: "fortnite", name: "Fortnite", viewers: 312000, color: "#1e3a5f", icon: "🎯" },
-  { id: "league-of-legends", name: "League of Legends", viewers: 289000, color: "#1a1a3e", icon: "⚔️" },
-  { id: "minecraft", name: "Minecraft", viewers: 198000, color: "#0a2e0a", icon: "⛏️" },
-  { id: "valorant", name: "VALORANT", viewers: 176000, color: "#3e1a1a", icon: "🔫" },
-  { id: "gta", name: "GTA V", viewers: 154000, color: "#2e2e1a", icon: "🚗" },
-  { id: "music", name: "Music", viewers: 98000, color: "#1a1a3e", icon: "🎵" },
-  { id: "just-chatting", name: "Just Chatting", viewers: 445000, color: "#3e1a3e", icon: "💬" },
-  { id: "irl", name: "IRL", viewers: 87000, color: "#3e2e1a", icon: "📱" },
+  { id: "fortnite", name: "Fortnite", viewers: 312000, color: "#1e3a5f", icon: "target" },
+  { id: "league-of-legends", name: "League of Legends", viewers: 289000, color: "#1a1a3e", icon: "sword" },
+  { id: "minecraft", name: "Minecraft", viewers: 198000, color: "#0a2e0a", icon: "pickaxe" },
+  { id: "valorant", name: "VALORANT", viewers: 176000, color: "#3e1a1a", icon: "crosshair" },
+  { id: "gta", name: "GTA V", viewers: 154000, color: "#2e2e1a", icon: "car" },
+  { id: "music", name: "Music", viewers: 98000, color: "#1a1a3e", icon: "music" },
+  { id: "just-chatting", name: "Just Chatting", viewers: 445000, color: "#3e1a3e", icon: "messages" },
+  { id: "irl", name: "IRL", viewers: 87000, color: "#3e2e1a", icon: "smartphone" },
 ];
 
 export const trendingStreamers = [
@@ -105,37 +106,37 @@ export const trendingStreamers = [
 
 export const features = [
   {
-    icon: "⚡",
+    icon: "zap" as FeatureIconName,
     title: "Ultra-Low Latency",
     desc: "Sub-second live streaming so your viewers react in real time.",
     color: "#ff6b35",
   },
   {
-    icon: "🌍",
+    icon: "globe" as FeatureIconName,
     title: "Global Community",
     desc: "Connect with millions of passionate fans and creators worldwide.",
     color: "#00d4aa",
   },
   {
-    icon: "💰",
+    icon: "coins" as FeatureIconName,
     title: "Earn Revenue",
     desc: "Monetize with subscriptions, bits, donations, and brand deals.",
     color: "#ff9f6b",
   },
   {
-    icon: "🛡️",
+    icon: "shield" as FeatureIconName,
     title: "Safe & Moderated",
     desc: "Advanced tools to keep your community safe and harassment-free.",
     color: "#7c3aed",
   },
   {
-    icon: "📊",
+    icon: "chart" as FeatureIconName,
     title: "Detailed Analytics",
     desc: "Understand your audience and grow your channel with data insights.",
     color: "#3b82f6",
   },
   {
-    icon: "📱",
+    icon: "mobile" as FeatureIconName,
     title: "Mobile Ready",
     desc: "Stream and watch on any device — desktop, tablet, or mobile.",
     color: "#fbbf24",

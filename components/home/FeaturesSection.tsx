@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { getFeatureIcon } from "@/components/home/icon-map";
 import { features } from "@/components/home/home-data";
 
 export default function FeaturesSection() {
@@ -26,28 +27,32 @@ export default function FeaturesSection() {
       </motion.p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {features.map((feature, index) => (
-          <motion.div
-            key={feature.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            whileHover={{ y: -4 }}
-            className="bg-[#12121a] border border-white/5 rounded-2xl p-6 text-left hover:border-[#ff6b35]/20 transition-all group"
-          >
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4"
-              style={{ backgroundColor: `${feature.color}15` }}
+        {features.map((feature, index) => {
+          const Icon = getFeatureIcon(feature.icon);
+
+          return (
+            <motion.div
+              key={feature.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -4 }}
+              className="bg-[#12121a] border border-white/5 rounded-2xl p-6 text-left hover:border-[#ff6b35]/20 transition-all group"
             >
-              {feature.icon}
-            </div>
-            <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-[#ff6b35] transition-colors">
-              {feature.title}
-            </h3>
-            <p className="text-white/40 text-sm">{feature.desc}</p>
-          </motion.div>
-        ))}
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                style={{ backgroundColor: `${feature.color}15` }}
+              >
+                <Icon className="w-6 h-6" style={{ color: feature.color }} strokeWidth={2} />
+              </div>
+              <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-[#ff6b35] transition-colors">
+                {feature.title}
+              </h3>
+              <p className="text-white/40 text-sm">{feature.desc}</p>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
