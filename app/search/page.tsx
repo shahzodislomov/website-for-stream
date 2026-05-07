@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useCallback, useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { getCategoryIconById, headingIcons } from "@/components/home/icon-map";
@@ -40,7 +40,7 @@ function useSearchResults(query: string) {
   const [results, setResults] = useState<SearchResult | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const performSearch = async (searchQuery: string) => {
+  const performSearch = useCallback(async (searchQuery: string) => {
     setLoading(true);
     try {
       const res = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`);
@@ -51,7 +51,7 @@ function useSearchResults(query: string) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   return { results, loading, performSearch, setResults, setLoading };
 }
@@ -66,6 +66,12 @@ function SearchContent() {
   const query = searchParams.get("q") || "";
   const [searchInput, setSearchInput] = useState(query);
   const { results, loading, performSearch } = useSearchResults(query);
+
+  useEffect(() => {
+    if (query) {
+      performSearch(query);
+    }
+  }, [performSearch, query]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,6 +102,7 @@ function SearchContent() {
               value={searchInput}
               onChange={(e) => handleInputChange(e.target.value)}
               placeholder="Search streams, categories, creators..."
+              aria-label="Search query"
               className="w-full bg-[#12121a] text-white placeholder-white/30 rounded-xl pl-12 pr-4 py-4 border border-white/10 focus:border-[#ff6b35] focus:bg-[#1a1a25] transition-all text-lg"
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
@@ -107,17 +114,6 @@ function SearchContent() {
             </button>
           </form>
         </motion.div>
-
-        {query && !loading && !results && (
-          <div className="flex justify-start mb-6">
-            <button
-              onClick={() => performSearch(query)}
-              className="text-[#ff6b35] text-sm hover:underline"
-            >
-              Click to search for &quot;{query}&quot;
-            </button>
-          </div>
-        )}
 
         {loading ? (
           <div className="flex items-center justify-center py-20">

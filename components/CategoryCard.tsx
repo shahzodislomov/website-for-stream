@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { getCategoryIcon, type CategoryIconName } from "@/components/home/icon-map";
+import { CategoryIcon, type CategoryIconName } from "@/components/home/icon-map";
+import { formatViewers } from "@/lib/format";
 
 export interface Category {
   id: string;
@@ -12,14 +13,7 @@ export interface Category {
   icon: CategoryIconName;
 }
 
-function formatViewers(n: number): string {
-  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-  return String(n);
-}
-
 export default function CategoryCard({ category }: { category: Category }) {
-  const Icon = getCategoryIcon(category.icon);
-
   return (
     <Link href={`/category/${category.id}`} className="group block">
       <motion.div
@@ -47,7 +41,7 @@ export default function CategoryCard({ category }: { category: Category }) {
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <Icon className="w-12 h-12 text-white" strokeWidth={1.8} />
+              <CategoryIcon name={category.icon} className="w-12 h-12 text-white" strokeWidth={1.8} />
             </motion.span>
           </div>
 

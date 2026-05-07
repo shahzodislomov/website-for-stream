@@ -75,6 +75,11 @@ const categoryIconsById = {
   irl: Smartphone,
 } as const;
 
+export function CategoryIcon({ name, ...props }: { name: CategoryIconName } & React.ComponentProps<LucideIcon>) {
+  const Icon = categoryIcons[name];
+  return <Icon {...props} />;
+}
+
 export function getCategoryIcon(icon: CategoryIconName): LucideIcon {
   return categoryIcons[icon];
 }

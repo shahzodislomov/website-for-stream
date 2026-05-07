@@ -21,8 +21,7 @@ export default function LiveChannelsSection() {
 
     return featuredStreams.filter(
       (stream) =>
-        stream.category.toLowerCase().includes(activeFilter.toLowerCase()) ||
-        stream.tags.some((tag) => tag.toLowerCase().includes(activeFilter.toLowerCase())),
+        stream.vertical === activeFilter,
     );
   }, [activeFilter]);
 

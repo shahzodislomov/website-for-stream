@@ -2,6 +2,8 @@ import type { CategoryIconName, FeatureIconName } from "@/components/home/icon-m
 import type { Category } from "@/components/CategoryCard";
 import type { Stream } from "@/components/StreamCard";
 
+export type StreamVertical = "gaming" | "music" | "sports" | "irl" | "dev";
+
 export const featuredStreams: Stream[] = [
   {
     id: "nightowl",
@@ -12,6 +14,8 @@ export const featuredStreams: Stream[] = [
     thumbnailColor: "#1a0a2e",
     avatarColor: "#ff6b35",
     tags: ["Speedrun", "Souls-like", "English"],
+    vertical: "gaming",
+    description: "Chasing a personal best in a high-skill Elden Ring route with live strategy breakdowns.",
   },
   {
     id: "pixeljane",
@@ -22,6 +26,8 @@ export const featuredStreams: Stream[] = [
     thumbnailColor: "#0a1a0a",
     avatarColor: "#00d4aa",
     tags: ["Survival", "Building", "Chill"],
+    vertical: "gaming",
+    description: "A cozy Minecraft survival kingdom build with viewer-suggested rooms and relaxing chat.",
   },
   {
     id: "dropkick",
@@ -32,6 +38,8 @@ export const featuredStreams: Stream[] = [
     thumbnailColor: "#2e0a1a",
     avatarColor: "#ff3366",
     tags: ["FPS", "Ranked", "Pro"],
+    vertical: "gaming",
+    description: "High-rank VALORANT matches, agent tips, and clutch VOD review between queues.",
   },
   {
     id: "lunabeats",
@@ -42,6 +50,8 @@ export const featuredStreams: Stream[] = [
     thumbnailColor: "#0a0a2e",
     avatarColor: "#ff9f6b",
     tags: ["Lo-fi", "Music", "Chill"],
+    vertical: "music",
+    description: "Late-night lo-fi production, song requests, and relaxed community hangouts.",
   },
   {
     id: "codewithsam",
@@ -52,6 +62,8 @@ export const featuredStreams: Stream[] = [
     thumbnailColor: "#0a1a2e",
     avatarColor: "#7c3aed",
     tags: ["Coding", "Next.js", "Educational"],
+    vertical: "dev",
+    description: "Full-stack product building with practical Next.js, database, and deployment lessons.",
   },
   {
     id: "wildcardmike",
@@ -62,6 +74,8 @@ export const featuredStreams: Stream[] = [
     thumbnailColor: "#2e1a0a",
     avatarColor: "#fbbf24",
     tags: ["Wrestling", "Sports", "Live Event"],
+    vertical: "sports",
+    description: "Live watch party and analysis for a pro wrestling championship main event.",
   },
   {
     id: "chefclarence",
@@ -72,6 +86,8 @@ export const featuredStreams: Stream[] = [
     thumbnailColor: "#2e0a0a",
     avatarColor: "#f97316",
     tags: ["Cooking", "Food", "IRL"],
+    vertical: "irl",
+    description: "Interactive brunch cooking with step-by-step technique and ingredient swaps.",
   },
   {
     id: "cosmicquinn",
@@ -82,6 +98,8 @@ export const featuredStreams: Stream[] = [
     thumbnailColor: "#001a2e",
     avatarColor: "#3b82f6",
     tags: ["RPG", "Exploration", "English"],
+    vertical: "gaming",
+    description: "A completionist Starfield run tracking every quest, faction, and achievement.",
   },
 ];
 
@@ -164,10 +182,4 @@ export const footerColumns = [
 
 export const socialLinks = ["Twitter", "Instagram", "YouTube", "Discord"];
 
-export function formatCompactViewers(n: number): string {
-  if (n >= 1000) {
-    return `${(n / 1000).toFixed(1).replace(/\.0$/, "")}K`;
-  }
-
-  return String(n);
-}
+export { formatCompactNumber as formatCompactViewers } from "@/lib/format";

@@ -34,8 +34,7 @@ export default function BrowsePage() {
         ? featuredStreams
         : featuredStreams.filter(
             (stream) =>
-              stream.category.toLowerCase().includes(activeFilter.toLowerCase()) ||
-              stream.tags.some((tag) => tag.toLowerCase().includes(activeFilter.toLowerCase())),
+              stream.vertical === activeFilter,
           );
 
     if (sortBy === "viewers") {

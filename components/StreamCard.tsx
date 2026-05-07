@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Eye } from "lucide-react";
+import { formatViewers } from "@/lib/format";
 
 export interface Stream {
   id: string;
@@ -13,11 +14,8 @@ export interface Stream {
   thumbnailColor: string;
   avatarColor: string;
   tags: string[];
-}
-
-function formatViewers(n: number): string {
-  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-  return String(n);
+  vertical?: "gaming" | "music" | "sports" | "irl" | "dev";
+  description?: string;
 }
 
 export default function StreamCard({ stream }: { stream: Stream }) {

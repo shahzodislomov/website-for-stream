@@ -58,7 +58,7 @@ export default function Navbar() {
         {/* Nav Links with hover effects */}
         <nav className="hidden md:flex items-center gap-2 ml-4">
           {[
-            { href: "/", label: "Browse", active: true },
+            { href: "/browse", label: "Browse", active: false },
             { href: "/following", label: "Following", active: false },
             { href: "/esports", label: "Esports", active: false },
             { href: "/music", label: "Music", active: false },
@@ -105,6 +105,7 @@ export default function Navbar() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
+                aria-label="Search streams"
                 className="absolute right-1.5 p-2 bg-[#ff6b35] rounded-full text-white"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,6 +137,8 @@ export default function Navbar() {
           <motion.button
             whileTap={{ scale: 0.9 }}
             className="md:hidden p-2 text-white/70 hover:text-white"
+            aria-label="Toggle mobile menu"
+            aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <motion.svg
@@ -167,7 +170,7 @@ export default function Navbar() {
           >
             <div className="px-4 py-4 flex flex-col gap-2">
               {[
-                { href: "/", label: "Browse" },
+                { href: "/browse", label: "Browse" },
                 { href: "/following", label: "Following" },
                 { href: "/esports", label: "Esports" },
                 { href: "/music", label: "Music" },
